@@ -1,3 +1,7 @@
 api_faq:
     resource: AppBundle\Controller\API\FaqController
     type:     rest
+
+api_category:
+    resource: AppBundle\Controller\API\CategoryController
+    type:     rest
