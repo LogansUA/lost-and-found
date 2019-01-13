@@ -32,7 +32,7 @@
                 {% for category in form.categories %}
                     {{ form_widget(category, {
                         'attr' : {
-                            'data-category-id' : category.vars['label'].id
+                            'data-category-id' : category.vars['value']
                         }
                     }) }}
                 {% endfor %}

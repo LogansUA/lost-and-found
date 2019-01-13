@@ -129,7 +129,7 @@ class ItemController extends Controller
         $itemRepository = $this->getDoctrine()->getRepository('AppBundle:Item');
         $foundItems     = $itemRepository->getItemsByDate(ItemTypeType::FOUND);
 
-        $form = $this->createForm(new ItemsListType($categories));
+        $form = $this->createForm(new ItemsListType($this->getDoctrine()->getEntityManager()));
 
         $form->handleRequest($request);
 
@@ -580,6 +580,11 @@ class ItemController extends Controller
         $categoryRepository = $this->getDoctrine()->getRepository('AppBundle:Category');
         $categories         = $categoryRepository->getParentCategories();
 
-        return $categories;
+        $indexedCategories = [];
+        foreach ($categories as $category) {
+            $indexedCategories[$category->getId()] = $category;
+        }
+
+        return $indexedCategories;
     }
 }
